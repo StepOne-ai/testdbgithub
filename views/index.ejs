@@ -3,10 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="index.css" rel="stylesheet">
-    <title>MySite</title>
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <title>StudyLab отзывы</title>
 </head>
+<style>
+    .form-style-5{
+    max-width: 500px;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+.form-style-5 fieldset{
+    border: none;
+}
+.form-style-5 legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+.form-style-5 label {
+    display: block;
+    margin-bottom: 8px;
+}
+.form-style-5 input[type="text"],
+.form-style-5 input[type="date"],
+.form-style-5 input[type="datetime"],
+.form-style-5 input[type="email"],
+.form-style-5 input[type="number"],
+.form-style-5 input[type="search"],
+.form-style-5 input[type="time"],
+.form-style-5 input[type="url"],
+.form-style-5 textarea,
+.form-style-5 select {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 0;
+    outline: 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    background-color: #e8eeef;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+}
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="date"]:focus,
+.form-style-5 input[type="datetime"]:focus,
+.form-style-5 input[type="email"]:focus,
+.form-style-5 input[type="number"]:focus,
+.form-style-5 input[type="search"]:focus,
+.form-style-5 input[type="time"]:focus,
+.form-style-5 input[type="url"]:focus,
+.form-style-5 textarea:focus,
+.form-style-5 select:focus{
+    background: #d2d9dd;
+}
+.form-style-5 select{
+    -webkit-appearance: menulist-button;
+    height:35px;
+}
+.form-style-5 .number {
+    background: #1abc9c;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 15px 15px 15px 0px;
+}
+
+.form-style-5 input[type="submit"],
+.form-style-5 input[type="button"]
+{
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+.form-style-5 input[type="submit"]:hover,
+.form-style-5 input[type="button"]:hover
+{
+    background: #109177;
+}
+
+body {
+    margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        margin-top: 10%;
+    }
+    
+    svg {
+        height: 18px;
+        width: 18px;
+        fill: #666;
+    }
+    
+    .container {
+        width: 500px;
+        background: #f4f7f8;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 10px #0006;
+    }
+    
+    .twitter-card .header,
+    .twitter-card .footer {
+        height: 50px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    
+    .twitter-card .header .user-icon {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: solid 1px #ddd;
+    }
+    
+    .twitter-card .header .user {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        flex: 1;
+    }
+    
+    .twitter-card .name {
+        color: #222;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .twitter-card .userName {
+        color: #666;
+        font-size: 12px;
+    }
+    
+    .twitter-card .twitter-icon svg {
+        fill: #1d9bf0;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .twitter-card p,
+    .twitter-card a {
+        font-weight: 600;
+        line-height: 1.6;
+    }
+    
+    .twitter-card p {
+        margin: 10px 0;
+    }
+    
+    .twitter-card a {
+        color: #0099ff;
+    }
+    
+    .twitter-card .footer {
+        height: 28px;
+        margin-top: 10px;
+    }
+    
+    .twitter-card .footer .icon {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .twitter-card .footer svg {
+        transition: all 0.3s;
+    }
+    
+    .twitter-card .footer svg:hover {
+        fill: #0099ff;
+    }
+            
+</style>
 <body>
-    <h1>Hello World!</h1>
+    <div class="form-style-5" id="loginForm">
+        <form method="post">
+            <legend><span class="number">SL</span>Оставьте отзыв</legend><br>
+            <input type="text" name="name" id="name" placeholder="Ваше имя *">
+            <input type="text" name="username" id="username" placeholder="Ваш ник в телеграмме (без @) *">
+            <textarea id="comment" name="comment" placeholder="Отзыв"></textarea>
+            <input type ="submit" value="Отправить" />
+        </form>
+    </div>
+
+    <div id="commentSection">
+
+
+<!-- 
+        <div class="container twitter-card">
+            <div class="header">
+                <img src="studylab.jpg" alt="" class="user-icon">
+                <div class="user">
+                    <div class="name">CodeWithAr</div>
+                    <div class="userName">@codewithar</div>
+                </div>
+            </div>
+            <div class="center">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
+            </div>
+        </div> -->
+
+
+    </div>
+    <!-- <script>
+        let loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let name = document.getElementById("name");
+            let username = document.getElementById("username");
+            let comment = document.getElementById("comment");
+
+            if (username.value == "" || name.value == "" || comment.value == "") {
+                alert("Вы не заполнили форму!");
+            } else {
+                let commentSection = document.getElementById("commentSection");
+                commentSection.innerHTML += 
+                `<div class="container twitter-card">
+                    <div class="header">
+                        <img src="studylab.jpg" alt="" class="user-icon">
+                        <div class="user">
+                            <div class="name">${name.value}</div>
+                            <div class="userName"><a href="https://t.me/${username.value}">@${username.value}</a></div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <p>${comment.value}</p>
+                    </div>
+                </div>`;
+            }
+            username.value = "";
+            name.value = "";
+            comment.value = "";
+        });
+    </script> -->
+
 </body>
 </html>
