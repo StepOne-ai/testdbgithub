@@ -132,7 +132,7 @@ body {
     
     .twitter-card .header,
     .twitter-card .footer {
-        height: 50px;
+        height: 60px;
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -215,59 +215,27 @@ body {
             <input type ="submit" value="Отправить" />
         </form>
     </div>
-
+    
     <div id="commentSection">
-
-
-<!-- 
-        <div class="container twitter-card">
-            <div class="header">
-                <img src="studylab.jpg" alt="" class="user-icon">
-                <div class="user">
-                    <div class="name">CodeWithAr</div>
-                    <div class="userName">@codewithar</div>
-                </div>
-            </div>
-            <div class="center">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-            </div>
-        </div> -->
-
-
-    </div>
-    <!-- <script>
-        let loginForm = document.getElementById("loginForm");
-
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let name = document.getElementById("name");
-            let username = document.getElementById("username");
-            let comment = document.getElementById("comment");
-
-            if (username.value == "" || name.value == "" || comment.value == "") {
-                alert("Вы не заполнили форму!");
-            } else {
-                let commentSection = document.getElementById("commentSection");
-                commentSection.innerHTML += 
-                `<div class="container twitter-card">
-                    <div class="header">
-                        <img src="studylab.jpg" alt="" class="user-icon">
-                        <div class="user">
-                            <div class="name">${name.value}</div>
-                            <div class="userName"><a href="https://t.me/${username.value}">@${username.value}</a></div>
+        <% if (result.users.length > 0) { %>
+            <% for(var i = 0; i < result.users.length; i++) { %>
+                <% if (result.users[i] != "") { %>
+                    <div class="container twitter-card">
+                        <div class="header">
+                            <img src="https://cdn.discordapp.com/attachments/877999120210612276/1248959012721135706/studylab.jpg?ex=66658f39&is=66643db9&hm=5874417765b767e4454f8372fecb6c7c9327f723457e3b60fcb80b02908adeb1&" alt="" class="user-icon">
+                            <div class="user">
+                                <div class="name"><%= result.users[i] %></div>
+                                <div class="date"><%= result.dates[i] %> </div>
+                                <div class="userName"><a href="https://t.me/<%= result.usernames[i] %>">@<%= result.usernames[i] %></a></div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <p><%= result.comments[i] %></p>
                         </div>
                     </div>
-                    <div class="center">
-                        <p>${comment.value}</p>
-                    </div>
-                </div>`;
-            }
-            username.value = "";
-            name.value = "";
-            comment.value = "";
-        });
-    </script> -->
-
+                <% } %>
+            <% } %>
+        <% } %>
+    </div>
 </body>
 </html>
