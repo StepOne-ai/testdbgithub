@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles.css" rel="stylesheet" type="text/css">
     <title>StudyLab отзывы</title>
+    <script src=
+"https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
+        </script>
 </head>
 <style>
     .form-style-5{
@@ -202,10 +206,56 @@ body {
     .twitter-card .footer svg:hover {
         fill: #0099ff;
     }
+    .b-container{
+        width:200px;
+        height:150px;
+        background-color: #ccc;
+        margin:0px auto;
+        padding:10px;
+        font-size:30px;
+        color: #fff;
+    }
+    .b-popup{
+        width:100%;
+        min-height:100%;
+        background-color: rgba(0,0,0,0.5);
+        overflow:hidden;
+        position:fixed;
+        top:0px;
+    }
+    .b-popup .b-popup-content{
+        margin:40px auto 0px auto;
+        width:100px;
+        height: 40px;
+        padding:10px;
+        background-color: #c5c5c5;
+        border-radius:5px;
+        box-shadow: 0px 0px 10px #000;
+    }
             
 </style>
 </script>
 <body>
+    <script>
+        function showPopup() {
+            Swal.fire({
+                title: "Ошибка",
+                text: "Либо вы не заполнили все поля либо такой пользователь уже оставил комментарий!",
+                showCloseButton: true,
+            });
+        }
+    </script>
+    <% if (result.alerting == 2) { %> 
+        <script>
+            showPopup();
+        </script>
+    <% } %>
+    <% if (result.alerting == 1) {%>
+        <script>
+            showPopup();
+        </script>
+    <% } %>
+    
     <div class="form-style-5" id="loginForm">
         <form method="post">
             <legend><span class="number">SL</span>Оставьте отзыв</legend><br>
