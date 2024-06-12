@@ -237,22 +237,22 @@ body {
 </script>
 <body>
     <script>
-        function showPopup() {
+        function showPopup(title, text) {
             Swal.fire({
-                title: "Ошибка",
-                text: "Либо вы не заполнили все поля либо такой пользователь уже оставил комментарий!",
+                title: title,
+                text: text,
                 showCloseButton: true,
             });
         }
     </script>
     <% if (result.alerting == 2) { %> 
         <script>
-            showPopup();
+            showPopup("Ошибка", "Вы не заполнили все поля либо такой пользователь уже оставил комментарий!");
         </script>
     <% } %>
     <% if (result.alerting == 1) {%>
         <script>
-            showPopup();
+            showPopup("Успех", "Ваш комментарий успешно добавлен!");
         </script>
     <% } %>
     
