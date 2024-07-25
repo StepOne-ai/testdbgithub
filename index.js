@@ -30,7 +30,7 @@ app.get('/', urlencodedParser, async (req, res) => {
   let usernames = []
   let comments = []
   let dates = []
-  let allData = await getTheData();
+  let allData = await getTheData("users");
   let alerting = 0
 
   allData.forEach((data) => {
@@ -49,6 +49,101 @@ app.get('/', urlencodedParser, async (req, res) => {
 });
 
 app.post('/', urlencodedParser, async (req, res) => {
+  let users = []
+  let usernames = []
+  let comments = []
+  let dates = []
+  let allData = await getTheData();
+
+  if(req.body.name == "" || req.body.username == "" || req.body.comment == ""){
+    allData.forEach(data => {
+      let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
+      let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
+      let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
+      let dateTo = formatDate(new Date(data["date"].seconds*1000))
+
+      users.push(nameTo)
+      usernames.push(usernameTo)
+      comments.push(commentTo)
+      dates.push(dateTo)
+    })
+
+    let alerting = 2
+    return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+  } else {
+    const name = req.body.name;
+    const username = req.body.username;
+    const comment = req.body.comment;
+    const date = new Date();
+
+    //Check if the user is already in the list 0 = okay, 1 = success, 2 = error
+    let alerting = 1
+    allData.forEach(data => {
+      if(data["username"] == username){
+        alerting = 2
+      }
+    })
+
+    if (alerting == 1) {
+      uploadProcessedData(name, username, comment, date);
+      console.log("upload success")
+      let allData = await getTheData();
+      allData.forEach(data => {
+        let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
+        let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
+        let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
+        let dateTo = formatDate(new Date(data["date"].seconds*1000))
+
+        users.push(nameTo)
+        usernames.push(usernameTo)
+        comments.push(commentTo)
+        dates.push(dateTo)
+      })
+
+      return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+    } else {
+      allData.forEach(data => {
+        let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
+        let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
+        let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
+        let dateTo = formatDate(new Date(data["date"].seconds*1000))
+
+        users.push(nameTo)
+        usernames.push(usernameTo)
+        comments.push(commentTo)
+        dates.push(dateTo)
+      })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+    }
+  }
+})
+
+// Bauman Part
+
+app.get('/bmstu', urlencodedParser, async (req, res) => {
+  let users = []
+  let usernames = []
+  let comments = []
+  let dates = []
+  let allData = await getTheData("usersBmstu");
+  let alerting = 0
+
+  allData.forEach((data) => {
+    let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
+    let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
+    let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
+    let dateTo = formatDate(new Date(data["date"].seconds*1000))
+
+    users.push(nameTo)
+    usernames.push(usernameTo)
+    comments.push(commentTo)
+    dates.push(dateTo)
+  })
+
+  return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+});
+
+app.post('/bmstu', urlencodedParser, async (req, res) => {
   let users = []
   let usernames = []
   let comments = []
