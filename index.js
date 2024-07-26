@@ -93,7 +93,6 @@ app.post('/', urlencodedParser, async (req, res) => {
         let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
         let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
         let dateTo = formatDate(new Date(data["date"].seconds*1000))
-forEach
         users.push(nameTo)
         usernames.push(usernameTo)
         comments.push(commentTo)
