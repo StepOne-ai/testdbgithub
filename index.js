@@ -86,7 +86,6 @@ app.post('/', urlencodedParser, async (req, res) => {
 
     if (alerting == 1) {
       uploadProcessedData(name, username, comment, date, "users");
-      console.log("upload success")
       let allData = await getTheData("users");
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
