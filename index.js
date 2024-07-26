@@ -53,7 +53,7 @@ app.post('/', urlencodedParser, async (req, res) => {
   let usernames = []
   let comments = []
   let dates = []
-  let allData = await getTheData();
+  let allData = await getTheData("users");
 
   if(req.body.name == "" || req.body.username == "" || req.body.comment == ""){
     allData.forEach(data => {
@@ -85,15 +85,15 @@ app.post('/', urlencodedParser, async (req, res) => {
     })
 
     if (alerting == 1) {
-      uploadProcessedData(name, username, comment, date);
+      uploadProcessedData(name, username, comment, date, "users");
       console.log("upload success")
-      let allData = await getTheData();
+      let allData = await getTheData("users");
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
         let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
         let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
         let dateTo = formatDate(new Date(data["date"].seconds*1000))
-
+forEach
         users.push(nameTo)
         usernames.push(usernameTo)
         comments.push(commentTo)
@@ -148,7 +148,7 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
   let usernames = []
   let comments = []
   let dates = []
-  let allData = await getTheData();
+  let allData = await getTheData("usersBmstu");
 
   if(req.body.name == "" || req.body.username == "" || req.body.comment == ""){
     allData.forEach(data => {
@@ -180,9 +180,9 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
     })
 
     if (alerting == 1) {
-      uploadProcessedData(name, username, comment, date);
+      uploadProcessedData(name, username, comment, date, "usersBmstu");
       console.log("upload success")
-      let allData = await getTheData();
+      let allData = await getTheData("usersBmstu");
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
         let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
