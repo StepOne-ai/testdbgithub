@@ -26,6 +26,7 @@ function formatDate(date) {
 }
 
 app.get('/', urlencodedParser, async (req, res) => {
+  let bmstu = "something"
   let users = []
   let usernames = []
   let comments = []
@@ -45,10 +46,11 @@ app.get('/', urlencodedParser, async (req, res) => {
     dates.push(dateTo)
   })
 
-  return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+  return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
 });
 
 app.post('/', urlencodedParser, async (req, res) => {
+  let bmstu = "something"
   let users = []
   let usernames = []
   let comments = []
@@ -69,7 +71,7 @@ app.post('/', urlencodedParser, async (req, res) => {
     })
 
     let alerting = 2
-    return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+    return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
   } else {
     const name = req.body.name;
     const username = req.body.username;
@@ -98,7 +100,7 @@ app.post('/', urlencodedParser, async (req, res) => {
         dates.push(dateTo)
       })
 
-      return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
     } else {
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
@@ -111,7 +113,7 @@ app.post('/', urlencodedParser, async (req, res) => {
         comments.push(commentTo)
         dates.push(dateTo)
       })
-      return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
     }
   }
 })
@@ -119,6 +121,7 @@ app.post('/', urlencodedParser, async (req, res) => {
 // Bauman Part
 
 app.get('/bmstu', urlencodedParser, async (req, res) => {
+  let bmstu = "bmstu"
   let users = []
   let usernames = []
   let comments = []
@@ -138,7 +141,7 @@ app.get('/bmstu', urlencodedParser, async (req, res) => {
     dates.push(dateTo)
   })
 
-  return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+  return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
 });
 
 app.post('/bmstu', urlencodedParser, async (req, res) => {
@@ -147,6 +150,7 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
   let comments = []
   let dates = []
   let allData = await getTheData("usersBmstu");
+  let bmstu = "bmstu"
 
   if(req.body.name == "" || req.body.username == "" || req.body.comment == ""){
     allData.forEach(data => {
@@ -160,9 +164,8 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
       comments.push(commentTo)
       dates.push(dateTo)
     })
-
     let alerting = 2
-    return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+    return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
   } else {
     const name = req.body.name;
     const username = req.body.username;
@@ -193,7 +196,7 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
         dates.push(dateTo)
       })
 
-      return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
     } else {
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
@@ -206,7 +209,7 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
         comments.push(commentTo)
         dates.push(dateTo)
       })
-      return res.render('index', {result: {users, usernames, comments, dates, alerting} })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
     }
   }
 })

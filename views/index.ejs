@@ -258,7 +258,12 @@ body {
     
     <div class="form-style-5" id="loginForm">
         <form method="post">
+            <% if (result.bmstu != "bmstu") { %>
             <legend><span class="number">SL</span>Оставьте отзыв</legend><br>
+            <% } %>
+            <% if (result.bmstu == "bmstu") { %>
+            <legend><span class="number">BH</span>Оставьте отзыв</legend><br>
+            <% } %>
             <input type="text" name="name" id="name" placeholder="Ваше имя *">
             <input type="text" name="username" id="username" placeholder="Ваш ник в телеграмме (без @) *">
             <textarea id="comment" name="comment" placeholder="Отзыв"></textarea>
@@ -272,7 +277,12 @@ body {
                 <% if (result.users[i] != "") { %>
                     <div class="container twitter-card">
                         <div class="header">
+                            <% if (result.bmstu != "bmstu") { %>
                             <img src="https://i.yapx.ru/Xi5KF.jpg" alt="" class="user-icon">
+                            <% } %>
+                            <% if (result.bmstu == "bmstu") { %>
+                            <img src="https://abali.ru/wp-content/uploads/2013/03/Gerb_MGTU_imeni_Baumana.png" alt="" class="user-icon">
+                            <% } %>
                             <div class="user">
                                 <div class="name"><%= result.users[i] %></div>
                                 <div class="date"><%= result.dates[i] %> </div>
