@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles.css" rel="stylesheet" type="text/css">
     <title>StudyLab отзывы</title>
-    <script src=
-"https://cdn.jsdelivr.net/npm/sweetalert2@11">
-
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
     .form-style-5{
@@ -255,6 +252,11 @@ body {
             showPopup("Успех", "Ваш комментарий успешно добавлен!");
         </script>
     <% } %>
+    <% if (result.alerting == 3) {%>
+        <script>
+            showPopup("Ошибка", "Такого Telegram пользователя не существует!");
+        </script>
+    <% } %>
     
     <div class="form-style-5" id="loginForm">
         <form method="post">
@@ -275,8 +277,8 @@ body {
         <% if (result.users.length > 0) { %>
             <% for(var i = 0; i < result.users.length; i++) { %>
                 <% if (result.users[i] != "") { %>
-                    <div class="container twitter-card">
-                        <div class="header">
+                    <div class="container twitter-card" style="height: 150px;">
+                        <div class="header" style="height: 75px;">
                             <% if (result.bmstu != "bmstu") { %>
                             <img src="https://i.yapx.ru/Xi5KF.jpg" alt="" class="user-icon">
                             <% } %>
@@ -286,10 +288,11 @@ body {
                             <div class="user">
                                 <div class="name"><%= result.users[i] %></div>
                                 <div class="date"><%= result.dates[i] %> </div>
+                                <div class="rank"><%= result.poses[i] %>😄 <%= result.neges[i] %>🤬</div>
                                 <div class="userName"><a href="https://t.me/<%= result.usernames[i] %>">@<%= result.usernames[i] %></a></div>
                             </div>
                         </div>
-                        <div class="center">
+                        <div class="center" style="margin-top: 10px;">
                             <p><%= result.comments[i] %></p>
                         </div>
                     </div>
