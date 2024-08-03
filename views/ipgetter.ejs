@@ -94,8 +94,9 @@
           }
        });
     
+
        Telegram.WebApp.onEvent('mainButtonClicked', function(){
-          tg.sendData("some string that we need to send"); 
+          tg.sendData(`${tg.initDataUnsafe.user.first_name}`); 
           //при клике на основную кнопку отправляем данные в строковом виде
        });
     
