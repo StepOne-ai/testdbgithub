@@ -92,12 +92,14 @@
              tg.MainButton.enable() //показываем 
           }
        });
-    
+       
+       var first_name = tg.initDataUnsafe.user.first_name;
+       var last_name = tg.initDataUnsafe.user.last_name;
+       var username = tg.initDataUnsafe.user.username;
+       var language_code = tg.initDataUnsafe.user.language_code;
+
        Telegram.WebApp.onEvent('mainButtonClicked', function(){
-          tg.sendData(`${tg.initDataUnsafe.user.first_name}
-       ${tg.initDataUnsafe.user.last_name}
-       ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`);//показываем user_id); 
-          //при клике на основную кнопку отправляем данные в строковом виде
+          tg.sendData(first_name + " " + last_name + " " + username + " " + language_code);//при клике на основную кнопку отправляем данные в строковом виде
        });
     
     
