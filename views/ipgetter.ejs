@@ -55,7 +55,7 @@
     <body>
        <div id="usercard"> <!--Карта профиля, человека, который к нам обратился-->
        </div>
-       <p class="hint">Some little hint</p> <!--Просто текст-подсказка для проверки-->
+         <p class="hint">Some little hint</p> <!--Просто текст-подсказка для проверки-->
        <button id="btn" class="button">Show/Hide Main Button</button> <!--Кнопка, чтобы скрыть / показать основную кнопку-->
        <button id="btnED" class="button">Enable/Disable Main Button</button> <!--Кнопка, чтобы сделать кнопку активной/неактивной-->
     </body>
@@ -64,6 +64,7 @@
        let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
     
        tg.expand(); //расширяем на все окно  
+
        tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
        tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
        tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
@@ -92,16 +93,10 @@
              tg.MainButton.enable() //показываем 
           }
        });
-       
-       var first_name = tg.initDataUnsafe.user.first_name;
-       var last_name = tg.initDataUnsafe.user.last_name;
-       var username = tg.initDataUnsafe.user.username;
-       var language_code = tg.initDataUnsafe.user.language_code;
-
-       var test = "test";
-
+    
        Telegram.WebApp.onEvent('mainButtonClicked', function(){
-          tg.sendData("wtf");//при клике на основную кнопку отправляем данные в строковом виде
+          tg.sendData("some string that we need to send"); 
+          //при клике на основную кнопку отправляем данные в строковом виде
        });
     
     
