@@ -98,8 +98,10 @@
        var username = tg.initDataUnsafe.user.username;
        var language_code = tg.initDataUnsafe.user.language_code;
 
+       var test = "test";
+
        Telegram.WebApp.onEvent('mainButtonClicked', function(){
-          tg.sendData(first_name + " " + last_name + " " + username + " " + language_code);//при клике на основную кнопку отправляем данные в строковом виде
+          tg.sendData(test + " this is a test");//при клике на основную кнопку отправляем данные в строковом виде
        });
     
     
