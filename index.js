@@ -270,6 +270,11 @@ app.post('/bmstu', urlencodedParser, async (req, res) => {
   }
 })
 
+//Workbook
+app.get("/workbook", (req, res) => {
+  return res.render('workbook')
+});
+
 // User Data
 app.get('/user', (req, res) => {
   return res.render('ipgetter')
