@@ -26,12 +26,14 @@ function formatDate(date) {
   return datePart + " " + timePart;
 }
 
-app.get('/', urlencodedParser, async (req, res) => {
+app.get('/med', urlencodedParser, async (req, res) => {
   let bmstu = "something"
   let users = []
   let usernames = []
   let comments = []
   let dates = []
+  let poses = []
+  let neges = []
   let allData = await getTheData("users");
   let alerting = 0
 
@@ -40,23 +42,29 @@ app.get('/', urlencodedParser, async (req, res) => {
     let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
     let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
     let dateTo = formatDate(new Date(data["date"].seconds*1000))
+    let posTo = JSON.stringify(data["pos"]).replaceAll('"', '')
+    let negTo = JSON.stringify(data["neg"]).replaceAll('"', '')
 
     users.push(nameTo)
     usernames.push(usernameTo)
     comments.push(commentTo)
     dates.push(dateTo)
-  })
+    poses.push(posTo)
+    neges.push(negTo)
+})
 
-  return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
+  return res.render('index', {result: {users, usernames, comments, dates, alerting, poses, neges, bmstu} })
 });
 
-app.post('/', urlencodedParser, async (req, res) => {
-  let bmstu = "something"
+app.post('/med', urlencodedParser, async (req, res) => {
   let users = []
   let usernames = []
   let comments = []
   let dates = []
+  let poses = []
+  let neges = []
   let allData = await getTheData("users");
+  let bmstu = "something"
 
   if(req.body.name == "" || req.body.username == "" || req.body.comment == ""){
     allData.forEach(data => {
@@ -64,23 +72,34 @@ app.post('/', urlencodedParser, async (req, res) => {
       let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
       let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
       let dateTo = formatDate(new Date(data["date"].seconds*1000))
+      let posTo = JSON.stringify(data["pos"]).replaceAll('"', '')
+      let negTo = JSON.stringify(data["neg"]).replaceAll('"', '')
 
       users.push(nameTo)
       usernames.push(usernameTo)
       comments.push(commentTo)
       dates.push(dateTo)
+      poses.push(posTo)
+      neges.push(negTo)
     })
-
     let alerting = 2
-    return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
+    return res.render('index', {result: {users, usernames, comments, dates, alerting, poses, neges, bmstu} })
   } else {
     const name = req.body.name;
     const username = req.body.username;
     const comment = req.body.comment;
     const date = new Date();
+    const rev = await review(comment);
+    const pos = rev.pos
+    const neg = rev.neg
+    let alerting = 1
+    //Validating
+    if (await checkUsername(username) == 'Does not exist') {
+      alerting = 3
+    }
 
     //Check if the user is already in the list 0 = okay, 1 = success, 2 = error
-    let alerting = 1
+    // 3 = username does not exist
     allData.forEach(data => {
       if(data["username"] == username){
         alerting = 2
@@ -88,33 +107,42 @@ app.post('/', urlencodedParser, async (req, res) => {
     })
 
     if (alerting == 1) {
-      uploadProcessedData(name, username, comment, date, "users");
+      uploadProcessedData(name, username, comment, date, pos, neg, "users");
       let allData = await getTheData("users");
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
         let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
         let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
         let dateTo = formatDate(new Date(data["date"].seconds*1000))
+        let posTo = JSON.stringify(data["pos"]).replaceAll('"', '')
+        let negTo = JSON.stringify(data["neg"]).replaceAll('"', '')
+
         users.push(nameTo)
         usernames.push(usernameTo)
         comments.push(commentTo)
         dates.push(dateTo)
+        poses.push(posTo)
+        neges.push(negTo)
       })
 
-      return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting, poses, neges, bmstu} })
     } else {
       allData.forEach(data => {
         let nameTo = JSON.stringify(data["name"]).replaceAll('"', '')
         let usernameTo = JSON.stringify(data["username"]).replaceAll('"', '')
         let commentTo = JSON.stringify(data["comment"]).replaceAll('"', '')
         let dateTo = formatDate(new Date(data["date"].seconds*1000))
+        let posTo = JSON.stringify(data["pos"]).replaceAll('"', '')
+        let negTo = JSON.stringify(data["neg"]).replaceAll('"', '')
 
         users.push(nameTo)
         usernames.push(usernameTo)
         comments.push(commentTo)
         dates.push(dateTo)
+        poses.push(posTo)
+        neges.push(negTo)
       })
-      return res.render('index', {result: {users, usernames, comments, dates, alerting, bmstu} })
+      return res.render('index', {result: {users, usernames, comments, dates, alerting, poses, neges, bmstu} })
     }
   }
 })
